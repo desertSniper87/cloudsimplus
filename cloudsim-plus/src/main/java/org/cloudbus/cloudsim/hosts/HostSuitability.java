@@ -54,6 +54,10 @@ public final class HostSuitability {
         forStorage = forStorage && other.forStorage;
     }
 
+    public boolean isSuitable() {
+        return forStorage && forRam && forBw && forPes;
+    }
+
     /** Checks if the Host has storage suitability for the size of the VM.
      * @return true if it's suitable;
      *         false if it's unsuitable or this specific requirement

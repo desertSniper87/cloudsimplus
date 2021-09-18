@@ -51,6 +51,7 @@ public abstract class VmAllocationPolicyMigrationDynamicUpperThresholdFirstFit e
         super(vmSelectionPolicy);
         setSafetyParameter(safetyParameter);
         setFallbackVmAllocationPolicy(fallbackVmAllocationPolicy);
+        setHostFreePesMap();
     }
 
     /**

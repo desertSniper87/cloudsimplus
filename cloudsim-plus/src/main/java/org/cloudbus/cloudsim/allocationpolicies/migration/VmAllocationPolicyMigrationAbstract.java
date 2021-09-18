@@ -69,6 +69,8 @@ public abstract class VmAllocationPolicyMigrationAbstract extends VmAllocationPo
     /** @see #areHostsOverloaded() */
     private boolean hostsOverloaded;
 
+    private Map<Host, Long> hostFreePesMap;
+
     /**
      * Creates a VmAllocationPolicy.
      * It uses a {@link #DEF_UNDER_UTILIZATION_THRESHOLD default under utilization threshold}.
@@ -97,6 +99,16 @@ public abstract class VmAllocationPolicyMigrationAbstract extends VmAllocationPo
         this.underUtilizationThreshold = DEF_UNDER_UTILIZATION_THRESHOLD;
         this.savedAllocation = new HashMap<>();
         setVmSelectionPolicy(vmSelectionPolicy);
+    }
+
+    public void setHostFreePesMap() {
+        for (Map.Entry<Vm, Host> allocation : this.savedAllocation.entrySet()) {
+            hostFreePesMap.put(allocation.getValue(), (long) allocation.getValue().getFreePesNumber());
+        }
+    }
+
+    public Map<Host, Long> getHostFreePesMap() {
+        return this.hostFreePesMap;
     }
 
     @Override
